@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create UI with React API</title>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Navbar(){
+
+        return (
+            <div>
+                I am navbar
+            </div>
+        )
+      }
+      function Footer(){
+
+        return (
+            <div>
+                I am Footer
+            </div>
+        )
+      }
+      
+      function Card({name,age,classes}){
+      
+        return (
+            <div>
+                <p>Name:- {name} </p>
+                <p>Age:- {age}</p>
+                <p>Voter:-{age>18?"yes":"No"}</p>
+                <p>Class:- {classes}</p>
+            </div>
+        )
+      }
+   
+       function App(){
+        const [state,setState]=React.useState(0)
+        function handleClick(){
+            setState(state+1);
+        }
+        return (
+            <div>
+                <Navbar/>
+                 <Card name="jaydeep" age={21} />
+                 <Card name="lala" age={16} />
+                
+                <Footer/>
+            </div>
+        )
+       }
+  
+        const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+        reactRoot.render(<App/>);
+    </script>
+</body>
+
+</html>

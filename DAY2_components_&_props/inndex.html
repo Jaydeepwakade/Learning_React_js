@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic List Rendering</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // Your ItemList component code will go here
+        function Gallery({ children }) {
+            return (
+                <div style={{border:"2px solid red",display:"grid",gridTemplateColumns:"repeat(auto-fill,300px)",gap:"20px",alignItems:"center"}}>
+                    {children}
+                </div>
+            )
+        }
+
+        function Image({ src }) {
+            return <img style={{width:"300px",border:"1px solid red"}} src={src} alt="" />
+        }
+
+        let element = <>
+            <Gallery>
+                <Image src="https://wallpapers.com/images/featured/virat-kohli-pictures-yc8dfpcjssp3s4se.webp" />
+                <Image src="https://wallpapers.com/images/featured/virat-kohli-pictures-yc8dfpcjssp3s4se.webp" />
+                <Image src="https://wallpapers.com/images/featured/virat-kohli-pictures-yc8dfpcjssp3s4se.webp" />
+                <Image src="https://wallpapers.com/images/featured/virat-kohli-pictures-yc8dfpcjssp3s4se.webp" />
+                <Image src="https://wallpapers.com/images/featured/virat-kohli-pictures-yc8dfpcjssp3s4se.webp" />
+                <Image src="https://wallpapers.com/images/featured/virat-kohli-pictures-yc8dfpcjssp3s4se.webp" />
+                <Image src="https://wallpapers.com/images/featured/virat-kohli-pictures-yc8dfpcjssp3s4se.webp" />
+                
+
+            </Gallery>
+
+        </>
+
+        const reactDOm = ReactDOM.createRoot(document.getElementById("root"))
+        reactDOm.render(element)
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template</title>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  // Your  code will go here
+
+  function App() {
+
+    let [value, setvalue] = React.useState("")
+    const [arr, setarr] = React.useState([])
+
+
+    function Handlechange(e) {
+      setvalue(e.target.value)
+
+    }
+
+    function handlesubmit(e) {
+      e.preventDefault()
+      // value === '' ? alert("please enter the hobby") : 
+      if (value === "") {
+        alert("please enter the hobby")
+      }
+      else {
+        let newarr = [...arr, value]
+        setarr(newarr)
+        console.log(newarr)
+        setvalue("")
+      }
+
+
+    }
+
+    function DeleteEle(index) {
+      const newArr = arr.filter((_, i) => i !== index)
+      setarr(newArr)
+
+    }
+
+    return (
+      <div>
+        <form onSubmit={handlesubmit}>
+          <input type="text" value={value} onChange={Handlechange} placeholder="please enter your hobby" />
+          <button type="submit">submit</button>
+        </form >
+
+        <ol style={{ backgroundColor: "green", height: "Auto" }}>{arr.map((ele, index) => {
+          return <div style={{ display: "flex", gap: "10px" }}>
+            <li style={{ color: "white", listStyle: "dot", fontSize: "30px" }} key={index}>{ele}</li>
+            <button onClick={() => { DeleteEle(index) }} >delete</button>
+          </div>
+        })}</ol>
+
+
+
+      </div>
+    )
+
+
+  }
+
+
+
+  let root = ReactDOM.createRoot(document.getElementById("root"))
+  root.render(<App />)
+</script>
+
+</html>

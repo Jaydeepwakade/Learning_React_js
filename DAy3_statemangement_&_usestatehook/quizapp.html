@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+</head>
+
+<body style=" height:100vh; padding: 0%; display: flex; align-items: center;justify-content: center;">
+    <div style="width: 40%;" id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+<script type="text/babel">
+    // Your  code will go here
+
+    function Question() {
+        let questions = [
+            {
+                question: "What is the capital of France?",
+                options: ["Berlin", "Madrid", "Paris", "Lisbon"],
+                correctAnswer: "Paris",
+            },
+            {
+                question: "Who wrote 'To Kill a Mockingbird'?",
+                options: ["Harper Lee", "Mark Twain", "Ernest Hemingway", "F. Scott Fitzgerald"],
+                correctAnswer: "Harper Lee",
+            },
+            {
+                question: "What is the largest planet in our solar system?",
+                options: ["Earth", "Jupiter", "Mars", "Saturn"],
+                correctAnswer: "Jupiter",
+            },
+        ]
+        const [cquestion, setquestion] = React.useState(0)
+        const [answers, setAnswers] = React.useState(Array(questions.length).fill(""))
+        const [score, setScore] = React.useState(0)
+        const [quiz, quizfinish] = React.useState(false)
+
+        function clickbtn() {
+            updatescore()
+            if (cquestion < questions.length - 1) {
+                setquestion(cquestion + 1)
+            }
+            else {
+                quizfinish(true)
+                console.log(score)
+            }
+
+        }
+        function restartquiz() {
+            setquestion(0)
+            setAnswers(Array(questions.length).fill(""))
+            setScore(0)
+            quizfinish(false)
+        }
+        if (quiz) {
+            return (
+                <div>
+                    <h1>Quiz finished</h1>
+                    <h2>you final score:{score}/{questions.length}</h2>
+                    <button onClick={restartquiz}>restart</button>
+                </div>
+            )
+        }
+
+        function updatescore() {
+            if (answers[cquestion] == questions[cquestion].correctAnswer && answers.length === questions.length) {
+                setScore(prevScore => prevScore + 1)
+            }
+        }
+        function handleanswer(answer) {
+            setAnswers(prevAnswers => {
+                const newAnswers = [...prevAnswers]
+                newAnswers[cquestion] = answer
+                return newAnswers
+            })
+
+        }
+
+
+        return (
+            <div style={{ height: "300px", width: "500px", backgroundColor: "lightgreen", display: "flex", gap: "20px", flexDirection: "column", alignItems: "center" }}>
+                <div style={{ backgroundColor: "yellow", width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <h1 >{questions[cquestion].question}</h1>
+                </div>
+                <div style={{ display: "flex", gap: "20px", flexDirection: "column", width: "200px" }}>
+                    {questions[cquestion].options.map((ele, i) => {
+
+                        return <button
+                            key={i}
+                            onClick={() => handleanswer(ele)}>
+                            {ele}
+                        </button>
+                    })}
+
+                </div>
+                <button onClick={clickbtn}>submit</button>
+
+            </div>
+        )
+
+
+    }
+
+    const render = ReactDOM.createRoot(document.getElementById("root"))
+    render.render(<Question />)
+
+
+</script>
+
+</html>

@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.todo-data{
+  
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(71, 116, 116);
+   height:100vh;
+   width: 100%;
+}
+.inputfield{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    background-color: antiquewhite;
+    
+}
+.inputfield input{
+    height: 50px;
+    width: 200px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.listdata{
+    display: flex;
+ 
+    align-items: center;
+     justify-content: space-evenly;
+    gap: 20px;
+   padding: 20px;
+   list-style: none;
+
+}
+.listdata li{
+    word-wrap: break-word;
+    width: 500px;
+ 
+}
+.listdata button {
+ background-color: aquamarine;
+ border: none;
+ padding: 10px;
+ font-size: 36px;
+ border-radius: 20px;
+ height: 50px;
+ width: 190px;
+}
+.checkbox{
+    background-color: aquamarine;
+    border: none;
+    height: 40px;
+    
+    border: 2px solid red;
+  padding: 60px;
+    font-size: 16px;
+    border-radius: 20px;
+}

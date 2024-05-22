@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+
+
+    function ToDolist({ arr, setarr }) {
+        function deletetask(i) {
+            const updtedarr = arr.filter((_, index) => index !== i)
+            setarr(updtedarr)
+
+        }
+        function complete(i) {
+            // setarr((prevArr) => {
+            //     const updatedArr = [...prevArr]
+            //     updatedArr[index].completed = !updatedArr[index].completed
+            //     alert("hii")
+            //     return updatedArr
+
+            // })
+            const updatedArr =arr.map((task,index)=>{
+                if(index===i){
+                    return {...task,completed:!task.completed}
+                }
+                return task
+            })
+            setarr(updatedArr)
+        }
+        return (
+            <div className="todo-data" >
+                {arr.map((ele, index) => {
+                    return (
+                        <div style={{backgroundColor:ele.completed?"lightgreen":"orange"}} className="listdata" key={index}>
+                            <li style={{textDecoration:ele.completed?"line-through":"none",fontSize:"30px",overFlow:"hidden"}}>{ele.task}</li>
+                            <button onClick={() => deletetask(index)}>delete</button>
+                            <input className="checkbox" checked={ele.completed} onChange={()=>complete(index)}type="checkbox"/>
+                        </div>
+
+                    )
+                })}
+            </div>
+        )
+
+    }
+    // Your  code will go here
+
+    function Todo() {
+
+        const [value, setvalue] = React.useState("")
+        const [arr, setarr] = React.useState([])
+
+
+
+        function valueData(e) {
+            const newvalue = e.target.value
+            setvalue(newvalue)
+
+
+
+        }
+        function onSubmit(e) {
+            e.preventDefault()
+
+            if (value.trim() !== "") {
+                setarr(prevArr => [...prevArr, { task: value, completed: false }])
+                setvalue("")
+                console.log(arr)
+            }
+        }
+
+        return (
+            <div className="inputfield">
+                <form onSubmit={onSubmit}>
+                    <input value={value} onChange={valueData} type="text" placeholder="Enter todo here" />
+                    <input style={{height:"55px", width:"90px", backgroundColor:"yellow"}} type="submit" />
+                </form>
+                <ToDolist arr={arr} setarr={setarr} />
+            </div>
+        )
+    }
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<Todo />)
+</script>
+
+</html>

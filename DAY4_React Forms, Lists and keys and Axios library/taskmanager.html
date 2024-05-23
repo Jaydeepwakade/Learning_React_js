@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+</head>
+
+<body>
+    <div id="root">
+        <h1>
+        </h1>
+    </div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/babel">
+
+
+    function App() {
+
+        const [value, setvalue] = React.useState("")
+        const [assigne, setassigne] = React.useState("")
+        const [iscompleted, setcompleted] = React.useState(false)
+        const [obj, setobj] = React.useState({
+            title: "",
+            completed: false,
+            assignee: ""
+        })
+
+        function getvalue(e) {
+            setvalue(e.target.value)
+
+        }
+        function getvalue2(e) {
+            setassigne(e.target.value)
+
+        }
+        function getvalue3(e) {
+            setcompleted(e.target.value)
+
+        }
+
+        function handlesubmit(e) {
+            e.preventDefault()
+            console.log(value)
+        }
+
+
+        return (
+            <div>
+                <form onSubmit={handlesubmit} >
+                    <input onChange={getvalue} type="text" placeholder="enter the task" />
+                    <input onchange={getvalue3} type="checkbox" />
+                    <input onChange={getvalue2} type="text" placeholder="assigne name" />
+                    <input type="submit" name="" id="" />
+                </form>
+            </div>
+
+
+        )
+    }
+
+
+    const root = ReactDOM.createRoot(document.getElementById("root"))
+    root.render(<App />)
+</script>
+
+</html>

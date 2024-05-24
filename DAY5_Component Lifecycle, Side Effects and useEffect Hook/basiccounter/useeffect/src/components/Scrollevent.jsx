@@ -29,9 +29,7 @@ function Scrollevent() {
         {flag ? <h2 >scroll position{scrol}px</h2> : null}
       </div>
       
-      <div style={{ height: "200vh", backgroundColor: "red" }}>
-        scroll down to see
-      </div>
+      
     </div>
   );
 }

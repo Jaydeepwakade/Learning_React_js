@@ -23,11 +23,11 @@ function Iteractdom() {
 
   return (
     <>
-    <div ref={elementref}>
+    <div onClick={handleclick} ref={elementref}>
         <button ref={elementref3} onClick={handleclick}>change color</button>
    
     </div>
-      <div ref={elementref2}>hii</div>
+      <div onClick={handleclick} ref={elementref2}>hii</div>
       </>
     
   )

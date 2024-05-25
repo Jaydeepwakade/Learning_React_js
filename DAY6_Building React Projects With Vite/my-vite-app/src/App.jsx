@@ -2,6 +2,9 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import Focusinput from "./components/Focusinput";
+import Useref from "./components/Userefcomponent";
+import Iteractdom from "./components/Iteractdom";
 
 function App() {
   const [value, setValue] = useState("");
@@ -34,6 +37,9 @@ function App() {
           );
         })}
       </ul>
+      <Focusinput/>
+      <Useref/>
+      <Iteractdom/>
     </>
   );
 }
